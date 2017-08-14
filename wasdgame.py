@@ -11,7 +11,7 @@ yeti_y = randint(0, boardsize - 1)
 
 health = 11
 
-sword = False
+weapon = []
 
 towerlist = ['leave', 'up', 'sit', 'armoir']
 towertoplist = ['down', 'open']
@@ -65,6 +65,18 @@ def yetifight(x, y, a, b, h):
     print "Health = " + str(h)
     if h < 0:
         gameover(x, y, a, b, h)
+    if 'giant sword' in weapon:
+        print "\nThough wounded you find the strength to swing your ",
+        print "sword at the beast!"
+        print "\n The evil yeti is slain!\n"
+        print "\n YOU WIN THE GAME!!!\n"
+        
+        yn = raw_input("Play again? (y/n): ")
+        if yn.lower() == 'y':
+            showboard(2, 2, yeti_x, yeti_y, health)
+        else:
+            sys.exit()
+
     else:
         showboard(x, y, a, b, h)
 
@@ -135,14 +147,21 @@ def tower(x, y, a, b, h):
         tower(x, y, a, b, h)
     if action == 'armoir':
         print "\nYou are attacked by a grue!\n"
-        if sword == False:
+        if 'giant sword' in weapon:
+            print "\nYou stab the grue in the face with your sword.\n"
+            print "\nBehind the grue corpse you find a health potion!\n"
+            h += 10
+            print "Health = " + str(h)
+            tower(x, y, a, b, h)
+        else:
             h -= 5
             print "GRUE ATTACK:"
             print "Health = " + str(h)
             if h < 0:
                 gameover(x, y, a, b, h)
-        elif sword == True:
-            tower(x, y, a, b, h)
+            else:
+                tower(x, y, a, b, h)
+
 
 def towertop_text():
     if 'open' in towertoplist:
@@ -168,9 +187,9 @@ def towertop(x, y, a, b, h):
     elif action == 'open':
         print "\nYou open the chest and pull out a giant sword!\n"
         print "\n You get the GIANT SWORD!"
-        sword = True
-
+        weapon.append('giant sword')
         towertoplist.remove('open')
+
         towertop(x, y, a, b, h)
 
 
