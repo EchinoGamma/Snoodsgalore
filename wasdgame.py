@@ -254,7 +254,4 @@ print "Hit 'f' to investigate a tile.\n"
 print "Hit 'l' to quit.\n"
 print "Hit 'h' for help.\n"
 
-print "Hit 'a' for anal.\n"
-#omg lolololol
-
 showboard(2, 2, yeti_x, yeti_y, health)
