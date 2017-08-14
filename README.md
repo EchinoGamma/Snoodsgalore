@@ -1,3 +1,2 @@
 # Snoodsgalore
-
-so is this going to keep this thing in the thing?
+This is a place to make cool things and stuff. :D :d :D;d;D:
